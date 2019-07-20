@@ -77,3 +77,4 @@ function cycle ()
   if robot.detectUp() then
     robot.swingUp()
   end
+end
