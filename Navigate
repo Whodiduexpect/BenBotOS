@@ -1,6 +1,6 @@
 local robot = require("robot")
 local computer = require("computer")
-print("Navigation started - Hold Ctrl-Alt-C to exit")
+print("Navigation started - Reboot to exit")
 while true do
   if robot.detect() or not robot.forward() then
     print("Obstacle Detected, turning left")
