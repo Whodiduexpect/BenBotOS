@@ -1,0 +1,76 @@
+local robot = require("robot")
+local computer = require("computer")
+local currentSlot = 1
+local currentBlocks = 0
+local turnBackWhenDone = false
+robot.select(1)
+--
+print("How many blocks should I go for?")
+local maxBlocks = tonumber(io.read())
+--
+::ask::
+print("Should I turn back when I'm done?")
+print("Enter Y for yes, or N for no")
+--
+local userInput = io.read()
+if userInput == "Y" then
+  turnBackWhenDone = true
+elseif userInput == "N" then
+  turnBackWhenDone = false
+else
+  print("Invalid Answer")
+  goto ask
+end   
+--
+print("Started Smart Tunneling/Bridging")
+print("Please make sure blocks are present starting from the first slot")
+print("Please make sure a tool is present")
+--
+while currentBlocks < maxBlocks do
+  print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!")
+  if not robot.detectDown() then -- Bridge
+    if robot.count(currentSlot) == 0 then
+      if robot.count(currentSlot + 1) > 0 then
+        robot.select(currentSlot + 1)
+        currentSlot = currentSlot + 1
+      elseif robot.count(1) > 0 then -- Just in case blocks collected went into first slot
+        robot.select(1)
+      end
+    end   
+    robot.placeDown()
+    if not robot.detectDown() then
+      computer.beep()
+      print("Failed to place block...")
+    end
+  end
+--
+  if robot.detect() then
+    robot.swing()
+  end
+--
+  if robot.detectUp() then
+    robot.swingUp()
+  end
+--
+  currentBlocks = currentBlocks + 1 -- Keep var up-to-date
+  robot.forward() -- Go forward when we done
+end
+
+-- Finished!
+robot.select(1)
+print("Done! Completed " .. maxBlocks .. " blocks!")
+if turnBackWhenDone then
+  print("Turning Back to start")
+  robot.turnLeft()
+  robot.turnLeft()
+  local i = 0
+  while i < maxBlocks do
+    robot.forward()
+    i = i + 1    
+  end
+  print("I'm back to my starting postition!")
+end
+computer.beep(261, 0.6)
+computer.beep(329, 0.5)
+computer.beep(392, 0.3)
+computer.beep(523, 0.7)
