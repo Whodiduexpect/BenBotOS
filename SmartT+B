@@ -6,10 +6,15 @@ local currentBlocks = 0
 local turnBackWhenDone = false
 robot.select(1)
 
+print("Started Smart Tunneling/Bridging")
+print("Please make sure blocks are present starting from the first slot")
+print("Please make sure a tool is present")
+
 --Define function(s)
 function cycle ()
-	print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!")
-  if not robot.detectDown() then -- Bridge
+  print(I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!") -- Say prograss
+  
+  if not robot.detectDown() then   -- If we have to bridge
     if robot.count(currentSlot) == 0 then
       if robot.count(currentSlot + 1) > 0 then
         robot.select(currentSlot + 1)
@@ -17,19 +22,19 @@ function cycle ()
       elseif robot.count(1) > 0 then -- Just in case blocks collected went into first slot
         robot.select(1)
       end
-    end   
+    end
     robot.placeDown()
     if not robot.detectDown() then
       computer.beep()
       print("Failed to place block...")
     end
   end
---
-  if robot.detect() then
+  
+  if robot.detect() then -- If we have to break forward
     robot.swing()
   end
---
-  if robot.detectUp() then
+  --
+  if robot.detectUp() then -- If we have to break up
     robot.swingUp()
   end
 end
@@ -50,12 +55,9 @@ elseif userInput == "N" then
 else
   print("Invalid Answer")
   goto ask
-end   
+end
 --
-print("Started Smart Tunneling/Bridging")
-print("Please make sure blocks are present starting from the first slot")
-print("Please make sure a tool is present")
---
+
 while currentBlocks < maxBlocks do
   cycle() -- Call our function
   currentBlocks = currentBlocks + 1 -- Keep var up-to-date
@@ -73,7 +75,7 @@ if turnBackWhenDone then
   local i = 0
   while i < maxBlocks do
     robot.forward()
-    i = i + 1    
+    i = i + 1
   end
   print("I'm back to my starting postition!")
 end
