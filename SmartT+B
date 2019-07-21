@@ -12,7 +12,7 @@ print("Please make sure a tool is present")
 
 --Define function(s)
 function cycle ()
-  print(I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!") -- Say prograss
+  print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!") -- Say prograss
   
   if not robot.detectDown() then   -- If we have to bridge
     if robot.count(currentSlot) == 0 then
