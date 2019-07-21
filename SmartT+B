@@ -81,7 +81,10 @@ if turnBackWhenDone then
   robot.turnLeft()
   local i = 0
   while i < maxBlocks do
-    robot.forward()
+  moved = robot.forward()
+  while not moved do
+    moved = robot.forward()
+   end
     i = i + 1
   end
   print("I'm back to my starting position!")
