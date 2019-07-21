@@ -1,4 +1,5 @@
 -- Initial stuff
+local term = require("term")
 local robot = require("robot")
 local computer = require("computer")
 local currentSlot = 1
@@ -6,13 +7,32 @@ local currentBlocks = 0
 local turnBackWhenDone = false
 robot.select(1)
 
-print("Started Smart Tunneling/Bridging")
-print("Please make sure blocks are present starting from the first slot")
-print("Please make sure a tool is present")
+print("To run this, you need to have building blocks starting from the first slot")
+print("As well as a pickaxe in the tool slot")
+
+-- Ask some questions
+print("How many blocks should I go for?")
+local maxBlocks = tonumber(io.read())
+--
+::ask::
+print("Should I turn back when I'm done?")
+print("Enter Y for yes, or N for no")
+-- Interpret the Y/N question
+local userInput = io.read()
+if userInput == "Y" then
+  turnBackWhenDone = true
+elseif userInput == "N" then
+  turnBackWhenDone = false
+else
+  print("Invalid Answer")
+  goto ask
+end
+
+
 
 --Define function(s)
 function cycle ()
-  print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!") -- Say prograss
+  print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!") -- Say progress
   
   if not robot.detectDown() then   -- If we have to bridge
     if robot.count(currentSlot) == 0 then
@@ -39,26 +59,10 @@ function cycle ()
   end
 end
 
---
-print("How many blocks should I go for?")
-local maxBlocks = tonumber(io.read())
---
-::ask::
-print("Should I turn back when I'm done?")
-print("Enter Y for yes, or N for no")
---
-local userInput = io.read()
-if userInput == "Y" then
-  turnBackWhenDone = true
-elseif userInput == "N" then
-  turnBackWhenDone = false
-else
-  print("Invalid Answer")
-  goto ask
-end
---
+term.clear()
+print("Started Smart Tunneling/Bridging")
 
-while currentBlocks < maxBlocks do
+while currentBlocks < maxBlocks do -- The loop for every block
   cycle() -- Call our function
   currentBlocks = currentBlocks + 1 -- Keep var up-to-date
   robot.forward() -- Go forward when we done
@@ -83,4 +87,3 @@ computer.beep(261, 0.6)
 computer.beep(329, 0.5)
 computer.beep(392, 0.3)
 computer.beep(523, 0.7)
-
