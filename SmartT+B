@@ -1,9 +1,39 @@
+-- Initial stuff
 local robot = require("robot")
 local computer = require("computer")
 local currentSlot = 1
 local currentBlocks = 0
 local turnBackWhenDone = false
 robot.select(1)
+
+--Define function(s)
+function cycle ()
+	print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!")
+  if not robot.detectDown() then -- Bridge
+    if robot.count(currentSlot) == 0 then
+      if robot.count(currentSlot + 1) > 0 then
+        robot.select(currentSlot + 1)
+        currentSlot = currentSlot + 1
+      elseif robot.count(1) > 0 then -- Just in case blocks collected went into first slot
+        robot.select(1)
+      end
+    end   
+    robot.placeDown()
+    if not robot.detectDown() then
+      computer.beep()
+      print("Failed to place block...")
+    end
+  end
+--
+  if robot.detect() then
+    robot.swing()
+  end
+--
+  if robot.detectUp() then
+    robot.swingUp()
+  end
+end
+
 --
 print("How many blocks should I go for?")
 local maxBlocks = tonumber(io.read())
@@ -52,29 +82,3 @@ computer.beep(329, 0.5)
 computer.beep(392, 0.3)
 computer.beep(523, 0.7)
 
-function cycle ()
-	print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!")
-  if not robot.detectDown() then -- Bridge
-    if robot.count(currentSlot) == 0 then
-      if robot.count(currentSlot + 1) > 0 then
-        robot.select(currentSlot + 1)
-        currentSlot = currentSlot + 1
-      elseif robot.count(1) > 0 then -- Just in case blocks collected went into first slot
-        robot.select(1)
-      end
-    end   
-    robot.placeDown()
-    if not robot.detectDown() then
-      computer.beep()
-      print("Failed to place block...")
-    end
-  end
---
-  if robot.detect() then
-    robot.swing()
-  end
---
-  if robot.detectUp() then
-    robot.swingUp()
-  end
-end
