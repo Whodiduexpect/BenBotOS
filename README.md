@@ -10,3 +10,6 @@ The beginning of the program is the place to ask the user questions about what t
 
 ### End
 Make sure the program ends with the first slot selected, otherwise this might cause issues with other programs.
+
+## How do I update?
+If your using Benbot™ X, using the Update program in the /home directory will automaticly update the Programs directory.
