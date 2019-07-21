@@ -65,7 +65,10 @@ print("Started Smart Tunneling/Bridging")
 while currentBlocks < maxBlocks do -- The loop for every block
   cycle() -- Call our function
   currentBlocks = currentBlocks + 1 -- Keep var up-to-date
-  robot.forward() -- Go forward when we done
+  local moved = robot.forward()
+  while not moved do
+    moved = robot.forward()
+   end
 end
 
 -- Finished!
