@@ -84,7 +84,7 @@ if turnBackWhenDone then
     robot.forward()
     i = i + 1
   end
-  print("I'm back to my starting postition!")
+  print("I'm back to my starting position!")
 end
 computer.beep(261, 0.6)
 computer.beep(329, 0.5)
