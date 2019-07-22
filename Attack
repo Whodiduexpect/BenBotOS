@@ -24,7 +24,7 @@ while true do
         end
       end
     end
-  print("-All clear!-")
+    print("-All clear!-")
   else
     robot.forward()
   end

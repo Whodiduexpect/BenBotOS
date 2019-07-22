@@ -10,7 +10,7 @@ while not robot.detect() do
         robot.select(cS + 1)
         cS = cS + 1
       end
-    end   
+    end
     print("Placing Block...")
     robot.placeDown()
     if not robot.detectDown() then

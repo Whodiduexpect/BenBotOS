@@ -49,6 +49,7 @@ function cycle ()
       print("Failed to place block... Trying next slot")
       robot.select(currentSlot + 1)
       currentSlot = currentSlot + 1
+      robot.placeDown()
     end
   end
   if robot.detect() then -- If we have to break forward
