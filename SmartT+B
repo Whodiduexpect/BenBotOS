@@ -30,10 +30,10 @@ end
 
 
 
---Define function(s)
+-- Define function(s)
+
 function cycle ()
   print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!") -- Say progress
-  
   if not robot.detectDown() then   -- If we have to bridge
     if robot.count(currentSlot) == 0 then
       if robot.count(currentSlot + 1) > 0 then
@@ -44,20 +44,22 @@ function cycle ()
       end
     end
     robot.placeDown()
-    if not robot.detectDown() then
+    while not robot.detectDown() do
       computer.beep()
-      print("Failed to place block...")
+      print("Failed to place block... Trying next slot")
+      robot.select(currentSlot + 1)
+      currentSlot = currentSlot + 1
     end
   end
-  
   if robot.detect() then -- If we have to break forward
     robot.swing()
   end
-  --
   if robot.detectUp() then -- If we have to break up
     robot.swingUp()
   end
 end
+
+-- Stop functions, back to the code
 
 term.clear()
 print("Started Smart Tunneling/Bridging")
@@ -81,10 +83,11 @@ if turnBackWhenDone then
   robot.turnLeft()
   local i = 0
   while i < maxBlocks do
-  moved = robot.forward()
-  while not moved do
+    cycle()
     moved = robot.forward()
-   end
+    while not moved do
+      moved = robot.forward()
+    end
     i = i + 1
   end
   print("I'm back to my starting position!")
