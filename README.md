@@ -13,3 +13,6 @@ Make sure the program ends with the first slot selected, otherwise this might ca
 
 ## How do I update?
 If your using Benbot™ X, using the Update program in the /home directory will automaticly update the Programs directory.
+
+## Is this the entire OS?
+No, of course not, it's only the stuff that got updated. By adding something in the repository, the Update program will override/modify the installed OS with the file from the repository.
