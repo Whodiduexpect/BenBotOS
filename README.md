@@ -1,5 +1,5 @@
-# BenBot-Lua-Programs
-Lua programs for BenBot™
+# BenBotOS
+
 ## How to make programs for BenBot™
 
 ### Naming
