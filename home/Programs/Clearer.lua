@@ -1,5 +1,5 @@
 -- Require libs
-local robot = require(robot)
+local robot = require("robot")
 
 -- Ask questions
 ::askquestions::
