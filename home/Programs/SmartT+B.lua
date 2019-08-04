@@ -5,6 +5,7 @@ local computer = require("computer")
 local currentSlot = 1
 local currentBlocks = 0
 local turnBackWhenDone = false
+local nextSlot = 2
 robot.select(1)
 
 print("To run this, you need to have building blocks starting from the first slot")
@@ -36,19 +37,26 @@ function cycle ()
   print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!") -- Say progress
   if not robot.detectDown() then   -- If we have to bridge
     if robot.count(currentSlot) == 0 then
-      if robot.count(currentSlot + 1) > 0 then
-        robot.select(currentSlot + 1)
-        currentSlot = currentSlot + 1
+      nextSlot = currentSlot + 1
+      if robot.count(nextSlot) > 0 then
+        robot.select(nextSlot)
+        currentSlot = nextSlot
       elseif robot.count(1) > 0 then -- Just in case blocks collected went into first slot
         robot.select(1)
       end
     end
     robot.placeDown()
     while not robot.detectDown() do
+      nextSlot = currentSlot + 1
       computer.beep()
       print("Failed to place block... Trying next slot")
-      robot.select(currentSlot + 1)
-      currentSlot = currentSlot + 1
+      if currentSlot = 16 then
+        robot.select(1)
+        currentSlot = 1
+      else
+        robot.select(nextSlot)
+        currentSlot = nextSlot
+      end
       robot.placeDown()
     end
   end
