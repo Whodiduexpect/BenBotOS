@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=IBM+Plex+Sans')
-p {
-  font-familly: 'IBM Plex Sans';
+body {
+  font-family: 'IBM Plex Sans';
   font-size: 15px;
 }
 
