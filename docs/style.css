@@ -9,7 +9,7 @@ h1 {
  text-align: center; 
 }
 
-.button {
+button {
   background-color: #008CBA;
   border: none;
   color: white;
