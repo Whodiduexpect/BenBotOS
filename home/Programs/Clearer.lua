@@ -4,7 +4,7 @@ local computer = require("computer")
 local term = require("term")
 
 -- Make it clear where you put the thing
-print("Please put me in the bottom left of the top layer of the space you want me to clear")
+print("Please put me in a corner of the top layer of the space with what you want to clear on my right")
 
 -- Ask questions
 ::askquestions::
@@ -38,7 +38,7 @@ print("Please make sure I have a tool in the tool slot")
 -- Define some variables to keep track of our progress
 local currentLength = 1
 local currentWidth = 1
-local currentHeight = 1
+local currentHeight = 0
 -- And some additional ones
 local moved = nil
 local shouldRight = true
@@ -68,12 +68,31 @@ function alternate ()
 		end
 end
 
-while currentWidth < desiredWidth do
+while currentHeight < desiredHeight do
+	while currentWidth < desiredWidth do
+		while currentLength < desiredLength do
+			safeMove()
+			currentLength = currentLength + 1
+		end
+		alternate()
+		currentLength = 1
+		currentWidth = currentWidth + 1
+	end
 	while currentLength < desiredLength do
 		safeMove()
 		currentLength = currentLength + 1
 	end
-	alternate()
+	if currentHeight + 1 < desiredHeight then
+		robot.swingDown()
+		robot.down()
+		robot.turnAround()
+	end
+	currentWidth = 1
 	currentLength = 1
-	currentWidth = currentWidth + 1
+	currentHeight = currentHeight + 1
 end
+print("Finished " .. totalBlocks .. " !")
+computer.beep(261, 0.6)
+computer.beep(329, 0.5)
+computer.beep(392, 0.3)
+computer.beep(523, 0.7)
