@@ -9,7 +9,7 @@ while not robot.detect() do
     print("Breaking")
     robot.swingDown()
   else
-    print("Moving")
+    print("Moving")z
     robot.forward()
   end
 end
