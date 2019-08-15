@@ -1,6 +1,11 @@
+-- Require libraries
 local robot = require("robot")
 local computer = require("computer")
+
+-- starting message
 print("Navigation started - Reboot to exit")
+
+-- Navigation loop
 while true do
   if robot.detect() or not robot.forward() then
     print("Obstacle Detected, turning left")

@@ -1,6 +1,8 @@
 local robot = require("robot")
 local computer = require("computer")
+
 robot.select(1)
+
 print("Started breaking bridge")
 print("Make sure bridge block in first slot")
 print("Make sure tool is in tool slot")

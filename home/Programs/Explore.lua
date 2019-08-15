@@ -1,6 +1,10 @@
+-- Require libraries
 local robot = require("robot")
 local computer = require("computer")
+
+-- Starting text
 print("Explore started - Reboot to exit")
+
 while true do
   if robot.detect() or not robot.forward() then
     print("Obstacle Detected, turning left")
@@ -26,8 +30,8 @@ while true do
     end
     print("-All clear!-")
   else
-    if math.random(1,10) == 10 then
-      if math.random(1,2) == 1 then
+    if math.random(1,10) == 10 then -- Randomly decide if we should turn
+      if math.random(1,2) == 1 then -- Choose left or right
         robot.turnLeft()
       else
         robot.turnRight()

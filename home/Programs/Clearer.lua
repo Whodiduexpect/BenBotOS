@@ -21,16 +21,17 @@ local desiredWidth = tonumber(io.read())
 print("What is the height of the space that I should clear?")
 local desiredHeight = tonumber(io.read())
 
--- Calculate the total blocks
+-- Calculate the total blocks of the clearing area
 local totalBlocks = desiredLength * desiredWidth * desiredHeight
 
--- Check that the space that's going to be cleared isn't 0 or smaller
+-- Check that the clearing area isn't 0 or smaller
 if totalBlocks < 1 then
 	print("Invalid space")
 	goto askquestions
 end
 
--- Start
+
+-- Starting message
 term.clear()
 print("Started clearing out " .. totalBlocks .. " blocks!")
 print("Please make sure I have a tool in the tool slot")
@@ -39,12 +40,12 @@ print("Please make sure I have a tool in the tool slot")
 local currentLength = 1
 local currentWidth = 1
 local currentHeight = 0
--- And some additional ones
+-- And some additional ones too
 local moved = nil
 local shouldRight = true
 
 -- Define some functions
-function safeMove ()
+local function safeMove () -- Breaks block if it's in the way, and keeps going until it succesfully moved (if something's blocking it)
 	if robot.detect() then
 		robot.swing()
 	end
@@ -54,7 +55,7 @@ function safeMove ()
 	end
 end
 
-function alternate ()
+local function alternate () 
 		if shouldRight then
 			robot.turnRight()
 			safeMove()
@@ -68,9 +69,11 @@ function alternate ()
 		end
 end
 
-while currentHeight < desiredHeight do
-	while currentWidth < desiredWidth do
-		while currentLength < desiredLength do
+
+-- Start clearing
+while currentHeight < desiredHeight do -- Repeats for every level of depth
+	while currentWidth < desiredWidth do -- Repeats for every block of width for every level of depth
+		while currentLength < desiredLength do -- Repeats for every block of length for every block of width for every level of depth
 			safeMove()
 			currentLength = currentLength + 1
 		end
@@ -91,6 +94,7 @@ while currentHeight < desiredHeight do
 	currentLength = 1
 	currentHeight = currentHeight + 1
 end
+-- Indicate that we are finished
 print("Finished " .. totalBlocks .. " !")
 computer.beep(261, 0.6)
 computer.beep(329, 0.5)
