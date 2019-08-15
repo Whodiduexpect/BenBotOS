@@ -32,8 +32,7 @@ end
 
 
 -- Define function(s)
-
-function cycle ()
+local function cycle ()
   print("I'm on block " .. currentBlocks .. ", " .. maxBlocks - currentBlocks .. " to go!") -- Say progress
   if not robot.detectDown() then   -- If we have to bridge
     if robot.count(currentSlot) == 0 then
@@ -74,7 +73,7 @@ term.clear()
 print("Started Smart Tunneling/Bridging")
 
 while currentBlocks < maxBlocks do -- The loop for every block
-  cycle() -- Call our function
+  cycle() -- Call our local function
   currentBlocks = currentBlocks + 1 -- Keep var up-to-date
   local moved = robot.forward()
   while not moved do
@@ -88,8 +87,7 @@ robot.select(1)
 print("Done! Completed " .. maxBlocks .. " blocks!")
 if turnBackWhenDone then
   print("Turning Back to start")
-  robot.turnLeft()
-  robot.turnLeft()
+  robot.turnAround()
   local i = 0
   while i < maxBlocks do
     cycle()
