@@ -1,14 +1,16 @@
+-- Require libraries
 local robot = require("robot")
 local computer = require("computer")
-local cS = 1
+local currentSlot = 1
+
 print("Started Bridge")
 print("Please make sure blocks are in first slot")
 while not robot.detect() do
   if not robot.detectDown() then
-    if robot.count(cS) == 0 then
-      if robot.count(cS + 1) > 0 then
-        robot.select(cS + 1)
-        cS = cS + 1
+    if robot.count(currentSlot) == 0 then
+      if robot.count(currentSlot + 1) > 0 then
+        robot.select(currentSlot + 1)
+        currentSlot = currentSlot + 1
       end
     end
     print("Placing Block...")
