@@ -6,13 +6,13 @@ local geolyzer = component.proxy("geolyzer")
 
 -- Define variables
 local isNextStopHopper = false -- Keeps track if the next stop is the hopper
-local analyze = nil -- Stores the analasis provided by the geolyzer
+local analyze = nil -- Stores the analysis provided by the geolyzer
 local currentSlot = 1 -- (Works, but is unused) Keeps track of the current slot
 --- Let's make sure that last one is true
 robot.select(1)
 
 -- Define functions
-local function getAge ()    -- Get the age of the crop based on the analasis
+local function getAge ()    -- Get the age of the crop based on the analysis
     for k,v in pairs(analyze) do
         local i = k
         if i == "metadata" then
