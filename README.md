@@ -1,18 +1,51 @@
 # BenBotOS
 
-## How to make programs for BenBot™
+## Table of Contents
++ [About](#about)
++ [Getting Started](#getting_started)
++ [Usage](#usage)
 
-### Naming
-The program needs to be named with no spaces, instead, capitalize every starting letter in a word. For example, GoodJep and BadJep are both valid program names.
+## About <a name = "about"></a>
+BenBotOS is an addition to OpenOS which adds new programs, libraries and more! It is designed for Creatix robots as it assumes that you have all the upgrades available. It also does not factor energy cost, as energy is unlimited on Creatix robots.
 
-### Beginning
-The beginning of the program is the place to ask the user questions about what they want to do. Make sure to include a print statement.  
+## Getting Started <a name = "getting_started"></a>
+These instructions will get you a copy of the BenBotOS up and running on your robot.
 
-### End
-Make sure the program ends with the first slot selected, otherwise this might cause issues with other programs.
+### Installing
 
-## How do I update?
-If your using Benbot™ X, using the Update program in the /home directory will automaticly update the installed OS.
+You will already need OpenOS installed and running to install BenBotOS
 
-## Is this the entire OS?
-No, of course not, it's only the stuff that got updated. By adding something in the repository, the Update program will override/modify the installed OS with the file from the repository.
+1. First up, put your install floppy into the floppy slot on your robot.
+2. Hover over the install floppy in the floppy slot in your robot to find it's unique id. Take note of the first 3 characters. We will assume it's abc for this example
+3. Start the robot if you haven't already
+4. Go down one directory by typing:
+```
+cd ..
+```
+5. Copy the contents of the floppy to /home by typing: (make sure you replace abc)
+```
+copy /mnt/abc /home
+```
+6. Go back in the home directory by typing:
+```
+cd /home
+```
+7. Run the update program to update to BenbotOS (You can use it to update to the latest version too)
+```
+Update
+```
+
+Once the install process is done you should see a Programs directory in /home with a bunch of Programs in it.
+
+## Usage <a name = "usage"></a>
+
+Example Use: Making a bridge from one point to another
+
+1. Go in the Programs directory
+```
+cd Programs
+```
+2. Run Bridge.lua
+```
+Bridge.lua
+```
