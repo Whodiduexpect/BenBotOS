@@ -1,3 +1,4 @@
+-- This program is deprecated
 local robot = require("robot")
 local computer = require("computer")
 print("DEATH started - THERE IS NO exit")
