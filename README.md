@@ -18,24 +18,26 @@ You will already need OpenOS installed and running to install BenBotOS
 1. First up, put your install floppy into the floppy slot on your robot.
 2. Hover over the install floppy in the floppy slot in your robot to find it's unique id. Take note of the first 3 characters. We will assume it's abc for this example
 3. Start the robot if you haven't already
-4. Go down one directory by typing:
+4. Go down one directory
 ```
 cd ..
 ```
-5. Copy the contents of the floppy to /home by typing: (make sure you replace abc)
+5. Copy the contents of the floppy to the home directory
 ```
-copy mnt/abc/Update /home
+copy mnt/abc/Update home
 ```
-6. Go back in the home directory by typing:
+NOTE: Please make sure to replace "abc" to what was found in step 2
+
+6. Go back in the home directory
 ```
 cd home
 ```
-7. Run the update program to update to BenbotOS (You can use it to update to the latest version too)
+7. Run the update program to update to BenBotOS (You can use it to update to the latest version too)
 ```
 Update
 ```
 
-Once the install process is done you should see a Programs directory in /home with a bunch of Programs in it.
+Once the install process is complete you should see a Programs directory in the home directory with a bunch of programs.
 
 ## Usage <a name = "usage"></a>
 
