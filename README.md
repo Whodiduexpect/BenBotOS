@@ -24,11 +24,11 @@ cd ..
 ```
 5. Copy the contents of the floppy to /home by typing: (make sure you replace abc)
 ```
-copy /mnt/abc/Update /home
+copy mnt/abc/Update /home
 ```
 6. Go back in the home directory by typing:
 ```
-cd /home
+cd home
 ```
 7. Run the update program to update to BenbotOS (You can use it to update to the latest version too)
 ```
