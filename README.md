@@ -24,7 +24,7 @@ cd ..
 ```
 5. Copy the contents of the floppy to /home by typing: (make sure you replace abc)
 ```
-copy /mnt/abc /home
+copy /mnt/abc/Update /home
 ```
 6. Go back in the home directory by typing:
 ```
